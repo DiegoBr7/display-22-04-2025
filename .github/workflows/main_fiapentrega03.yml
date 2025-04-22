@@ -34,7 +34,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy_staging:
@@ -42,7 +42,7 @@ jobs:
     needs: build
     environment:
       name: "staging"
-      url: ${{ steps.deploy-to-staging.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}/staging
     permissions:
       id-token: write
       contents: read
@@ -51,7 +51,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: .net-app
           path: .
 
       - name: Azure Login (Staging)
@@ -74,7 +74,7 @@ jobs:
     needs: deploy_staging
     environment:
       name: "production" # este ambiente pode exigir aprovação manual no GitHub
-      url: ${{ steps.deploy-to-production.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
