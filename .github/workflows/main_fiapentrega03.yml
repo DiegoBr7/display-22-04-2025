@@ -41,7 +41,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: "production"
+      name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write
@@ -73,7 +73,7 @@ jobs:
     runs-on: windows-latest
     needs: deploy_staging
     environment:
-      name: "production" # este ambiente pode exigir aprovação manual no GitHub
+      name: "Production" # este ambiente pode exigir aprovação manual no GitHub
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
