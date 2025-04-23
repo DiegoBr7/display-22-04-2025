@@ -65,7 +65,7 @@ jobs:
         id: deploy-to-staging
         uses: azure/webapps-deploy@v3
         with:
-          app-name: "fiapentrega03-staging" # nome do app de staging no Azure
+          app-name: "fiapentrega03" # nome do app de staging no Azure
           slot-name: "production"
           package: .
 
